@@ -54,7 +54,7 @@ Github 仓库地址：[https://github.com/leancloud/docs](https://github.com/lea
 
 如果您觉得一点点阅读文档较慢，可以直接看我们的「[Demo 代码](https://github.com/leancloud/js-realtime-sdk/tree/master/demo)」，并且下载自己运行一下试试看，Demo 代码可以通过开两个浏览器标签的方式来模拟两个用户的互相通信，代码中也有详细的注释方便你来了解使用方法。
 
-```javascript
+```coffeescript
 # 最简的示例代码，请换成自己的 appId，可以通过浏览器多个标签模拟多用户通信
 appId = '9p6hyhh60av3ukkni3i9z53q1l8y'
 # clientId 就是实时通信中的唯一用户 id
@@ -79,17 +79,17 @@ realtimeObj.on 'open', ->
   }, (data) ->
     if data
       console.log 'Conversation 创建成功!', data
-    return
+  
   )
-  return
+
 # 当聊天断开时触发
 realtimeObj.on 'close', ->
   console.log '实时通信服务被断开！'
-  return
+
 # 接收断线或者网络状况不佳的事件（断网可测试）
 realtimeObj.on 'reuse', ->
   console.log '正在重新连接。。。'
-  return
+
 # 当 Conversation 被创建时触发，当然您可以使用回调函数来处理，不一定要监听这个事件
 realtimeObj.on 'create', (data) ->
   # 向这个 Conversation 添加新的用户
@@ -98,47 +98,47 @@ realtimeObj.on 'create', (data) ->
     'LeanCloud04'
   ], (data) ->
     console.log '成功添加用户：', data
-    return
+  
   # 从这个 Conversation 中删除用户
   conversationObj.remove 'LeanCloud03', (data) ->
     console.log '成功删除用户：', data
-    return
+  
   # 向这个 Conversation 中发送消息
   conversationObj.send { abc: 123 }, (data) ->
     console.log '发送的消息服务端已收收到：', data
-    return
+  
   setTimeout (->
     # 查看历史消息
     conversationObj.log (data) ->
       console.log '查看当前 Conversation 最近的聊天记录：', data
-      return
-    return
+    
+  
   ), 2000
   # 当前 Conversation 接收到消息
   conversationObj.receive (data) ->
     console.log '当前 Conversation 收到消息：', data
-    return
+  
   # 获取当前 Conversation 中的成员信息
   conversationObj.list (data) ->
     console.log '列出当前 Conversation 的成员列表：', data
-    return
+  
   # 取得当前 Conversation 中的人数
   conversationObj.count (num) ->
     console.log '取得当前的用户数量：' + num
-    return
-  return
+  
+
 # 监听所有用户加入的情况
 realtimeObj.on 'join', (data) ->
   console.log '有用户加入某个当前用户在的 Conversation：', data
-  return
+
 # 监听所有用户离开的情况
 realtimeObj.on 'left', (data) ->
   console.log '有用户离开某个当前用户在的 Conversation：', data
-  return
+
 # 监听所有 Conversation 中发送的消息
 realtimeObj.on 'message', (data) ->
   console.log '某个当前用户在的 Conversation 接收到消息：', data
-  return
+
 ```
 
 ## 安全
@@ -164,7 +164,7 @@ LeanCloud JavaScript 相关 SDK 都会使用「AV」作为命名空间。
 ### AV.realtime
 
 使用:
-```javascript
+```coffeescript
 AV.realtime(options, callback)
 ```
 
@@ -190,24 +190,24 @@ AV.realtime(options, callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime({
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123'
 }, ->
   console.log '与服务器连接成功！'
-  return
+
 )
 # 监听 open 事件会得到同样的效果
 realtimeObject.on 'open', ->
   console.log '与服务器连接成功！'
-  return
+
 ```
 
 ### AV.realtime.version
 
 用法：
-```javascript
+```coffeescript
 AV.realtime.version
 ```
 
@@ -221,7 +221,7 @@ AV.realtime.version
 
 例子：
 
-```javascript
+```coffeescript
 // 返回版本号
 console.log('当前版本是：' + AV.realtime.version);   
 ```
@@ -229,7 +229,7 @@ console.log('当前版本是：' + AV.realtime.version);
 ### RealtimeObject.open
 
 用法：
-```javascript
+```coffeescript
 RealtimeObject.open(callback)
 ```
 
@@ -247,7 +247,7 @@ RealtimeObject.open(callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -255,16 +255,16 @@ realtimeObject = AV.realtime(
 realtimeObject.open ->
   # 与服务器连接成功
   console.log 'open'
-  return
+
 realtimeObject.on 'open', ->
   console.log 'open,too.'
-  return
+
 ```
 
 ### RealtimeObject.close
 
 用法：
-```javascript
+```coffeescript
 RealtimeObject.close()
 ```
 
@@ -278,20 +278,20 @@ RealtimeObject.close()
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
 realtimeObject.close()
 realtimeObject.on 'close', ->
   console.log '与服务器已经断开！'
-  return
+
 ```
 
 ### RealtimeObject.on
 
 用法：
-```javascript
+```coffeescript
 RealtimeObject.on(eventName, callback)
 ```
 
@@ -311,24 +311,24 @@ RealtimeObject.on(eventName, callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
 # 当新建一个 Room 的时候就会触发
 realtimeObject.on 'create', (data) ->
   console.log data
-  return
+
 # 有人加入 Room 的时候会被触发
 realtimeObject.on 'join', (data) ->
   console.log data
-  return
+
 ```
 
 ### RealtimeObject.once
 
 用法：
-```javascript
+```coffeescript
 RealtimeObject.once(eventName, callback)
 ```
 
@@ -348,25 +348,25 @@ RealtimeObject.once(eventName, callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
 # 当服务建立之后会被触发
 realtimeObject.once 'open', ->
   console.log 'opened'
-  return
+
 # 当服务关闭的时候会被触发
 realtimeObject.once 'close', ->
   console.log 'closed'
-  return
+
 
 ```
 
 ### RealtimeObject.emit
 
 用法：
-```javascript
+```coffeescript
 RealtimeObject.emit eventName, dataObject
 ```
 
@@ -386,7 +386,7 @@ RealtimeObject.emit eventName, dataObject
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -394,7 +394,7 @@ realtimeObject = AV.realtime(
 realtimeObject.on 'LeanCloud123', (data) ->
   # 会输出 test
   console.log data.aaa
-  return
+
 # 派发了一个自定义的事件，名字叫「LeanCloud123」。
 realtimeObject.emit 'LeanCloud123', aaa: 'test'
 ```
@@ -402,7 +402,7 @@ realtimeObject.emit 'LeanCloud123', aaa: 'test'
 ### RealtimeObject.off
 
 用法：
-```javascript
+```coffeescript
 RealtimeObject.off eventName, callback
 ```
 
@@ -422,7 +422,7 @@ RealtimeObject.off eventName, callback
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -430,7 +430,7 @@ realtimeObject = AV.realtime(
 eventFun = (data) ->
   # 会输出 test
   console.log data.aaa
-  return
+
 
 # 当事件被派发的时候会触发
 realtimeObject.on 'LeanCloud123', eventFun
@@ -443,7 +443,7 @@ realtimeObject.emit 'LeanCloud123', aaa: 'test'
 ### RealtimeObject.conv
 
 用法：
-```javascript
+```coffeescript
 RealtimeObject.conv options, callback
 ```
 
@@ -465,7 +465,7 @@ RealtimeObject.conv options, callback
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -474,18 +474,18 @@ room = realtimeObject.conv({
   data: title: 'testTitle'
 }, (result) ->
   console.log 'Conversation created callback'
-  return
+
 )
 # 当新 Room 被创建时触发
 realtimeObject.on 'create', (data) ->
   console.log data
-  return
+
 ```
 
 ### RealtimeObject.conv
 
 用法：
-```javascript
+```coffeescript
 RealtimeObject.conv(convId, callback)
 ```
 
@@ -505,7 +505,7 @@ RealtimeObject.conv(convId, callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -516,7 +516,7 @@ conv = realtimeObject.conv(convId)
 ### RealtimeObject.room
 
 用法：
-```javascript
+```coffeescript
 RealtimeObject.room(options, callback)
 ```
 
@@ -526,7 +526,7 @@ RealtimeObject.room(options, callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -535,19 +535,19 @@ room = realtimeObject.room({
   data: title: 'testTitle'
 }, (result) ->
   console.log 'Room created callback'
-  return
+
 )
 
 // 当新 Room 被创建时触发
 realtimeObject.on 'create', (data) ->
   console.log data
-  return
+
 ```
 
 ### RealtimeObject.room
 
 用法：
-```javascript
+```coffeescript
 RealtimeObject.room(roomId, callback)
 ```
 
@@ -567,7 +567,7 @@ RealtimeObject.room(roomId, callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -578,7 +578,7 @@ room = realtimeObject.room(roomId)
 ### RealtimeObject.query
 
 用法：
-```javascript
+```coffeescript
 RealtimeObject.query(callback)
 ```
 
@@ -596,7 +596,7 @@ RealtimeObject.query(callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -610,7 +610,7 @@ realtimeObject.on 'open', ->
 ### RealtimeObject.query
 
 用法：
-```javascript
+```coffeescript
 RealtimeObject.query(options, callback)
 ```
 
@@ -640,7 +640,7 @@ RealtimeObject.query(options, callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -660,7 +660,7 @@ realtimeObject.on 'open', ->
 ### RoomObject.ping
 
 用法：
-```javascript
+```coffeescript
 RoomObject.ping(clientIdList, callback)
 ```
 
@@ -680,7 +680,7 @@ RoomObject.ping(clientIdList, callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -701,7 +701,7 @@ rt.ping [
 ### RoomObject.ping
 
 用法：
-```javascript
+```coffeescript
 RoomObject.ping(clientId, callback)
 ```
 
@@ -721,7 +721,7 @@ RoomObject.ping(clientId, callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -741,7 +741,7 @@ rt.ping 'LeanCloud01', (data) ->
 ### RoomObject.add
 
 用法：
-```javascript
+```coffeescript
 RoomObject.add(clientId, callback)
 ```
 
@@ -761,7 +761,7 @@ RoomObject.add(clientId, callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -770,7 +770,7 @@ room = realtimeObject.room(
   data: title: 'testTitle')
 room.add 'LeanCloud03', ->
   console.log 'Add success.'
-  return
+
 # 当前 Room 有新的 client 加入时触发
 realtimeObject.on 'join', (data) ->
   console.log data
@@ -779,7 +779,7 @@ realtimeObject.on 'join', (data) ->
 ### RoomObject.add
 
 用法：
-```javascript
+```coffeescript
 RoomObject.add(clientIdList, callback)
 ```
 
@@ -799,7 +799,7 @@ RoomObject.add(clientIdList, callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -811,7 +811,7 @@ room.add [
   'LeanCloud04'
 ], ->
   console.log 'Add success.'
-  return
+
 # 当前 Room 有新的 client 加入时触发
 realtimeObject.on 'join', (data) ->
   console.log data
@@ -820,7 +820,7 @@ realtimeObject.on 'join', (data) ->
 ### RoomObject.remove
 
 用法：
-```javascript
+```coffeescript
 RoomObject.remove(clientId, callback)
 ```
 
@@ -838,7 +838,7 @@ RoomObject.remove(clientId, callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -847,7 +847,7 @@ room = realtimeObject.room(
   data: title: 'testTitle')
 room.remove 'LeanCloud02', ->
   console.log 'Remove success.'
-  return
+
 # 当前 Room 有 client 立刻时触发
 realtimeObject.on 'left', (data) ->
   console.log data
@@ -856,7 +856,7 @@ realtimeObject.on 'left', (data) ->
 ### RoomObject.remove
 
 用法：
-```javascript
+```coffeescript
 RoomObject.remove(clientIdList, callback)
 ```
 
@@ -876,7 +876,7 @@ RoomObject.remove(clientIdList, callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -891,7 +891,7 @@ room.remove [
   'LeanCloud03'
 ], ->
   console.log 'Remove success.'
-  return
+
 # 当前 Room 有 client 立刻时触发
 realtimeObject.on 'left', (data) ->
   console.log data
@@ -900,7 +900,7 @@ realtimeObject.on 'left', (data) ->
 ### RoomObject.join
 
 用法：
-```javascript
+```coffeescript
 RoomObject.join(callback)
 ```
 
@@ -918,24 +918,24 @@ RoomObject.join(callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
 room = realtimeObject.room('safjslakjlfkjla123')
 room.join ->
   console.log 'join'
-  return
+
 # 当前 Room 有新的 client 加入时触发
 realtimeObject.on 'join', (data) ->
   console.log data
-  return
+
 ```
 
 ### RoomObject.leave
 
 用法：
-```javascript
+```coffeescript
 RoomObject.leave(callback)
 ```
 
@@ -955,7 +955,7 @@ RoomObject.leave(callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -974,7 +974,7 @@ realtimeObject.on 'left', (data) ->
 ### RoomObject.list
 
 用法：
-```javascript
+```coffeescript
 RoomObject.list(callback)
 ```
 
@@ -992,7 +992,7 @@ RoomObject.list(callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -1010,7 +1010,7 @@ room.list (data) ->
 ### RoomObject.send
 
 用法：
-```javascript
+```coffeescript
 RoomObject.send(dataObject, callback)
 ```
 
@@ -1030,7 +1030,7 @@ RoomObject.send(dataObject, callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -1042,7 +1042,7 @@ room = realtimeObject.room(
   data: title: 'testTitle')
 room.send { testMsg: 'abcde' }, ->
   console.log 'server ack.'
-  return
+
 # 当前用户所在的组，有消息时触发
 realtimeObject.on 'message', (data) ->
   console.log data
@@ -1051,7 +1051,7 @@ realtimeObject.on 'message', (data) ->
 ### RoomObject.receive
 
 用法：
-```javascript
+```coffeescript
 RoomObject.receive(callback)
 ```
 
@@ -1069,7 +1069,7 @@ RoomObject.receive(callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -1087,7 +1087,7 @@ room.receive (data) ->
 ### RoomObject.receipt
 
 用法：
-```javascript
+```coffeescript
 RoomObject.receipt(callback)
 ```
 
@@ -1105,7 +1105,7 @@ RoomObject.receipt(callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'abc123')
@@ -1117,7 +1117,7 @@ room = realtimeObject.room(
   data: title: 'testTitle')
 room.send { abc: 123 }, { receipt: true }, (data) ->
   console.log '信息发送成功，该信息会获取阅读回执'
-  return
+
 # 当前用户所在的组，有消息时触发
 room.receipt (data) ->
   console.log data
@@ -1126,7 +1126,7 @@ room.receipt (data) ->
 ### RoomObject.count
 
 用法：
-```javascript
+```coffeescript
 RoomObject.count(callback)
 ```
 
@@ -1144,7 +1144,7 @@ RoomObject.count(callback)
 
 例子：
 
-```javascript
+```coffeescript
 realtimeObject = AV.realtime(
   appId: '9p6hyhh60av3ukkni3i9z53q1l8y'
   clientId: 'LeanCloud01')

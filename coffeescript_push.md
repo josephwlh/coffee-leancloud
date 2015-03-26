@@ -36,7 +36,7 @@ Release 地址: [https://github.com/leancloud/js-push-sdk/releases](https://gith
 
 如果您觉得一点点阅读文档较慢，可以直接看我们的 [Demo 代码](https://github.com/leancloud/js-push-sdk/tree/master/demo)，并且下载自己运行一下试试看。
 
-```javascript
+```coffeescript
 # 最简的示例代码，请换成自己的 appId 和 appKey
 appId = '9p6hyhh60av3ukkni3i9z53qsie3cewft18vm'
 appKey = 'nhqqc1x7r7r89kp8pggrmyd0ukr2z3ayojpvf4'
@@ -49,16 +49,16 @@ push.send { data: LeanCloud: 123 }, (result) ->
     console.log '推送成功发送'
   else
     console.log 'error'
-  return
+
 # 如果想接收推送，需要调用 open 方法，开启和服务器的连接
 push.open ->
   console.log '连接服务器成功，可以接收推送'
-  return
+
 # 监听推送消息
 push.on 'message', (data) ->
   console.log 'message'
   console.log JSON.stringify(data)
-  return
+
 # 监听网络异常，SDK 会在底层自动重新连接服务器
 push.on 'reuse', ->
   console.log '网络中断正在重试。。。'
@@ -91,7 +91,7 @@ LeanCloud JavaScript 相关 SDK 都会使用「AV」作为命名空间。
 例子：
 
 
-```javascript
+```coffeescript
 pushObject = AV.push(
   appId: 'abcdefg123'
   appKey: 'qwertyuio222'
@@ -100,10 +100,10 @@ pushObject = AV.push(
     'bbb'
   ]).open(->
   console.log 'receiving message...'
-  return
+
 ).on('message', (data) ->
   console.log data
-  return
+
 ).send(
   data: test: 123
   channels: [ 'aaa' ])
@@ -117,7 +117,7 @@ pushObject = AV.push(
 
 例子：
 
-```javascript
+```coffeescript
 console.log AV.push.version
 # 2.0.0
 ```
@@ -134,7 +134,7 @@ console.log AV.push.version
 
 例子：
 
-```javascript
+```coffeescript
 pushObject.open ->
   console.log 'open'
 ```
@@ -152,7 +152,7 @@ pushObject.open ->
 
 例子：
 
-```javascript
+```coffeescript
 pushObject.send test: 123
 ```
 
@@ -180,7 +180,7 @@ pushObject.send test: 123
 
 例子：
 
-```javascript
+```coffeescript
 pushObject.send
   data: test: 123
   channels: [
@@ -201,10 +201,10 @@ pushObject.send
 
 例子：
 
-```javascript
+```coffeescript
 pushObject.subscribe [ 'testChannel' ], ->
   console.log '订阅成功！'
-  return
+
 # 然后你就可以直接发送消息
 pushObject.send
   data: test: 123
@@ -223,10 +223,10 @@ pushObject.send
 
 例子：
 
-```javascript
+```coffeescript
 pushObject.unsubscribe 'testChannel', ->
   console.log '取消订阅成功！'
-  return
+
 # 然后你就可以直接发送消息
 pushObject.send
   data: test: 123
@@ -248,7 +248,7 @@ pushObject.send
 
 例子：
 
-```javascript
+```coffeescript
 pushObject.on 'message', (data) ->
   console.log data
 ```
@@ -267,7 +267,7 @@ pushObject.on 'message', (data) ->
 
 例子：
 
-```javascript
+```coffeescript
 pushObject.once 'open', (data) ->
   console.log data
 ```
@@ -286,7 +286,7 @@ pushObject.once 'open', (data) ->
 
 例子：
 
-```javascript
+```coffeescript
 pushObject.emit 'customEvent', test: 123
 ```
 
@@ -298,7 +298,7 @@ pushObject.emit 'customEvent', test: 123
 
 例子：
 
-```javascript
+```coffeescript
 pushObject.close()
 ```
 
